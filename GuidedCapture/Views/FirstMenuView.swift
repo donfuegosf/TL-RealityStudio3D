@@ -30,8 +30,8 @@ struct FirstMenuView: View {
                            .padding(.horizontal)
                    }
 
-                   NavigationLink(destination: MessageView()) {
-                       Text("Show Message")
+                   NavigationLink(destination: FilePickerView()) {
+                       Text("Enter Documents Folder")
                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
                            .background(Color.green)
                            .foregroundColor(.white)
@@ -44,14 +44,5 @@ struct FirstMenuView: View {
            .environmentObject(appModel)
        }
    }
-    struct MessageView: View {
-        var body: some View {
-            Text("Here I am")
-                .font(.title)
-                .padding()
-        }
-    }
 
-#Preview {
-    FirstMenuView()
-}
+

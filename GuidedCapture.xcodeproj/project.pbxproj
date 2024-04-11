@@ -44,6 +44,7 @@
 		70D2F73E2A33A38900EFA0D8 /* ScanPasses-iPad-FixedHeight-unflippable-high.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 70D2F7322A33A37E00EFA0D8 /* ScanPasses-iPad-FixedHeight-unflippable-high.mp4 */; };
 		70D2F73F2A33A38900EFA0D8 /* ScanPasses-iPad-FixedHeight-1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 70D2F7342A33A37E00EFA0D8 /* ScanPasses-iPad-FixedHeight-1.mp4 */; };
 		777CD2342BC7C7E500EFE91E /* FirstMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777CD2332BC7C7E500EFE91E /* FirstMenuView.swift */; };
+		777CD2382BC7DBBC00EFE91E /* DocumentsAcces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777CD2372BC7DBBC00EFE91E /* DocumentsAcces.swift */; };
 		EB20D5602A40331F00992055 /* AppDataModel+Orbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB20D55F2A40331F00992055 /* AppDataModel+Orbit.swift */; };
 		EB20D5622A40341C00992055 /* AppDataModel+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB20D5612A40341C00992055 /* AppDataModel+State.swift */; };
 		EB20D5652A40363D00992055 /* CaptureOverlayView+Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB20D5642A40363D00992055 /* CaptureOverlayView+Buttons.swift */; };
@@ -91,6 +92,7 @@
 		70D2F7352A33A37E00EFA0D8 /* ScanPasses-iPhone-FixedHeight-3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ScanPasses-iPhone-FixedHeight-3.mp4"; sourceTree = "<group>"; };
 		70E33ED32ABA3F70002E9A3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		777CD2332BC7C7E500EFE91E /* FirstMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstMenuView.swift; sourceTree = "<group>"; };
+		777CD2372BC7DBBC00EFE91E /* DocumentsAcces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsAcces.swift; sourceTree = "<group>"; };
 		B63694814766022DF0079B53 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		EB20D55F2A40331F00992055 /* AppDataModel+Orbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDataModel+Orbit.swift"; sourceTree = "<group>"; };
 		EB20D5612A40341C00992055 /* AppDataModel+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDataModel+State.swift"; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 		70D2F6ED2A339DD500EFA0D8 /* GuidedCapture */ = {
 			isa = PBXGroup;
 			children = (
+				777CD2362BC7D8DE00EFE91E /* Folder Management  */,
 				777CD2352BC7C7EE00EFE91E /* Views */,
 				777CD2322BC7C7A000EFE91E /* Initial Entry Point */,
 				70E33ED32ABA3F70002E9A3C /* Info.plist */,
@@ -147,7 +150,6 @@
 				70D2F70E2A339E4A00EFA0D8 /* AppDataModel.swift */,
 				EB20D55F2A40331F00992055 /* AppDataModel+Orbit.swift */,
 				EB20D5612A40341C00992055 /* AppDataModel+State.swift */,
-				70D2F7052A339E4A00EFA0D8 /* CaptureFolderManager.swift */,
 				70D2F6FD2A339E4A00EFA0D8 /* CaptureOverlayView.swift */,
 				EB20D5642A40363D00992055 /* CaptureOverlayView+Buttons.swift */,
 				EB20D5662A40387800992055 /* CaptureOverlayView+LocalizedString.swift */,
@@ -155,7 +157,6 @@
 				70D2F7072A339E4A00EFA0D8 /* FeedbackMessages.swift */,
 				70D2F70F2A339E4A00EFA0D8 /* FeedbackView.swift */,
 				70D2F7022A339E4A00EFA0D8 /* HelpPageView.swift */,
-				70D2F7012A339E4A00EFA0D8 /* ModelView.swift */,
 				70D2F7102A339E4A00EFA0D8 /* OnboardingButtonView.swift */,
 				70D2F70B2A339E4A00EFA0D8 /* OnboardingButtonView+LocalizedString.swift */,
 				70D2F7002A339E4A00EFA0D8 /* OnboardingStateMachine.swift */,
@@ -212,8 +213,18 @@
 			children = (
 				777CD2332BC7C7E500EFE91E /* FirstMenuView.swift */,
 				70D2F7062A339E4A00EFA0D8 /* ContentView.swift */,
+				777CD2372BC7DBBC00EFE91E /* DocumentsAcces.swift */,
+				70D2F7012A339E4A00EFA0D8 /* ModelView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		777CD2362BC7D8DE00EFE91E /* Folder Management  */ = {
+			isa = PBXGroup;
+			children = (
+				70D2F7052A339E4A00EFA0D8 /* CaptureFolderManager.swift */,
+			);
+			path = "Folder Management ";
 			sourceTree = "<group>";
 		};
 		C24D33AE1382AF90FD27ABBD /* Configuration */ = {
@@ -333,6 +344,7 @@
 				70D2F71E2A339E4A00EFA0D8 /* FeedbackMessages.swift in Sources */,
 				70D2F7252A339E4A00EFA0D8 /* AppDataModel.swift in Sources */,
 				70D2F71B2A339E4A00EFA0D8 /* ShotFileInfo.swift in Sources */,
+				777CD2382BC7DBBC00EFE91E /* DocumentsAcces.swift in Sources */,
 				EB20D5622A40341C00992055 /* AppDataModel+State.swift in Sources */,
 				70D2F7242A339E4A00EFA0D8 /* ProgressBarView.swift in Sources */,
 			);

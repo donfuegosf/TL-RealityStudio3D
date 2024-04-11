@@ -149,6 +149,10 @@ extension CaptureOverlayView {
                 action: {
                     logger.log("Files button clicked!")
                     showDocumentBrowser = true
+                    print("ShowDocumentBrowser set to: \(showDocumentBrowser), Directory: \(appModel.scanFolderManager.rootScanFolder)")
+                    // Test opening document picker with a fixed, known-good directory
+                    let testDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+                    print("Test Directory: \(testDir)")
                 },
                 label: {
                     Image(systemName: "folder")
@@ -157,11 +161,10 @@ extension CaptureOverlayView {
                         .frame(width: 22)
                         .foregroundColor(.white)
                 })
-            .padding(.bottom, 20)
-            .padding(.horizontal, 10)
-            .sheet(isPresented: $showDocumentBrowser,
-                   onDismiss: { showDocumentBrowser = false },
-                   content: { DocumentBrowser(startingDir: appModel.scanFolderManager.rootScanFolder) })
+            .sheet(isPresented: $showDocumentBrowser) {
+                // Test DocumentBrowser with a fixed directory
+                DocumentBrowser(startingDir: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!)
+            }
         }
     }
 
