@@ -43,6 +43,7 @@
 		70D2F73D2A33A38900EFA0D8 /* ScanPasses-iPhone-FixedHeight-unflippable-low.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 70D2F72D2A33A37E00EFA0D8 /* ScanPasses-iPhone-FixedHeight-unflippable-low.mp4 */; };
 		70D2F73E2A33A38900EFA0D8 /* ScanPasses-iPad-FixedHeight-unflippable-high.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 70D2F7322A33A37E00EFA0D8 /* ScanPasses-iPad-FixedHeight-unflippable-high.mp4 */; };
 		70D2F73F2A33A38900EFA0D8 /* ScanPasses-iPad-FixedHeight-1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 70D2F7342A33A37E00EFA0D8 /* ScanPasses-iPad-FixedHeight-1.mp4 */; };
+		777CD2342BC7C7E500EFE91E /* FirstMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777CD2332BC7C7E500EFE91E /* FirstMenuView.swift */; };
 		EB20D5602A40331F00992055 /* AppDataModel+Orbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB20D55F2A40331F00992055 /* AppDataModel+Orbit.swift */; };
 		EB20D5622A40341C00992055 /* AppDataModel+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB20D5612A40341C00992055 /* AppDataModel+State.swift */; };
 		EB20D5652A40363D00992055 /* CaptureOverlayView+Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB20D5642A40363D00992055 /* CaptureOverlayView+Buttons.swift */; };
@@ -50,7 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		11A35A775A1C348E77CAC709 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE.txt; sourceTree = "<group>"; };
+		11A35A775A1C348E77CAC709 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		7028C8442A33C1F900381BF1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		70D2F6EB2A339DD500EFA0D8 /* GuidedCapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuidedCapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70D2F6F22A339DD600EFA0D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -89,7 +90,8 @@
 		70D2F7342A33A37E00EFA0D8 /* ScanPasses-iPad-FixedHeight-1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ScanPasses-iPad-FixedHeight-1.mp4"; sourceTree = "<group>"; };
 		70D2F7352A33A37E00EFA0D8 /* ScanPasses-iPhone-FixedHeight-3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ScanPasses-iPhone-FixedHeight-3.mp4"; sourceTree = "<group>"; };
 		70E33ED32ABA3F70002E9A3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		B63694814766022DF0079B53 /* SampleCode.xcconfig */ = {isa = PBXFileReference; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
+		777CD2332BC7C7E500EFE91E /* FirstMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstMenuView.swift; sourceTree = "<group>"; };
+		B63694814766022DF0079B53 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		EB20D55F2A40331F00992055 /* AppDataModel+Orbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDataModel+Orbit.swift"; sourceTree = "<group>"; };
 		EB20D5612A40341C00992055 /* AppDataModel+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDataModel+State.swift"; sourceTree = "<group>"; };
 		EB20D5642A40363D00992055 /* CaptureOverlayView+Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CaptureOverlayView+Buttons.swift"; sourceTree = "<group>"; };
@@ -112,7 +114,6 @@
 			children = (
 				11A35A775A1C348E77CAC709 /* LICENSE.txt */,
 			);
-			name = LICENSE;
 			path = LICENSE;
 			sourceTree = "<group>";
 		};
@@ -138,6 +139,8 @@
 		70D2F6ED2A339DD500EFA0D8 /* GuidedCapture */ = {
 			isa = PBXGroup;
 			children = (
+				777CD2352BC7C7EE00EFE91E /* Views */,
+				777CD2322BC7C7A000EFE91E /* Initial Entry Point */,
 				70E33ED32ABA3F70002E9A3C /* Info.plist */,
 				70D2F72B2A33A34B00EFA0D8 /* Resources */,
 				70D2F6F22A339DD600EFA0D8 /* Assets.xcassets */,
@@ -149,10 +152,8 @@
 				EB20D5642A40363D00992055 /* CaptureOverlayView+Buttons.swift */,
 				EB20D5662A40387800992055 /* CaptureOverlayView+LocalizedString.swift */,
 				70D2F7132A339E4A00EFA0D8 /* CapturePrimaryView.swift */,
-				70D2F7062A339E4A00EFA0D8 /* ContentView.swift */,
 				70D2F7072A339E4A00EFA0D8 /* FeedbackMessages.swift */,
 				70D2F70F2A339E4A00EFA0D8 /* FeedbackView.swift */,
-				70D2F6FF2A339E4A00EFA0D8 /* GuidedCaptureSampleApp.swift */,
 				70D2F7022A339E4A00EFA0D8 /* HelpPageView.swift */,
 				70D2F7012A339E4A00EFA0D8 /* ModelView.swift */,
 				70D2F7102A339E4A00EFA0D8 /* OnboardingButtonView.swift */,
@@ -196,6 +197,23 @@
 				70D2F72D2A33A37E00EFA0D8 /* ScanPasses-iPhone-FixedHeight-unflippable-low.mp4 */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		777CD2322BC7C7A000EFE91E /* Initial Entry Point */ = {
+			isa = PBXGroup;
+			children = (
+				70D2F6FF2A339E4A00EFA0D8 /* GuidedCaptureSampleApp.swift */,
+			);
+			path = "Initial Entry Point";
+			sourceTree = "<group>";
+		};
+		777CD2352BC7C7EE00EFE91E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				777CD2332BC7C7E500EFE91E /* FirstMenuView.swift */,
+				70D2F7062A339E4A00EFA0D8 /* ContentView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		C24D33AE1382AF90FD27ABBD /* Configuration */ = {
@@ -303,6 +321,7 @@
 				EB20D5672A40387800992055 /* CaptureOverlayView+LocalizedString.swift in Sources */,
 				EB20D5602A40331F00992055 /* AppDataModel+Orbit.swift in Sources */,
 				70D2F7282A339E4A00EFA0D8 /* OnboardingTutorialView.swift in Sources */,
+				777CD2342BC7C7E500EFE91E /* FirstMenuView.swift in Sources */,
 				70D2F71D2A339E4A00EFA0D8 /* ContentView.swift in Sources */,
 				70D2F7142A339E4A00EFA0D8 /* CaptureOverlayView.swift in Sources */,
 				70D2F7272A339E4A00EFA0D8 /* OnboardingButtonView.swift in Sources */,
@@ -453,7 +472,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GuidedCapture/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YWSLX39462;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GuidedCapture/Info.plist;
@@ -470,7 +489,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.GuidedCapture${SAMPLE_CODE_DISAMBIGUATOR}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.exercise.running.app-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -494,7 +513,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GuidedCapture/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YWSLX39462;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GuidedCapture/Info.plist;
@@ -511,7 +530,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.GuidedCapture${SAMPLE_CODE_DISAMBIGUATOR}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.exercise.running.app-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_INSTALLED_PRODUCT = NO;
