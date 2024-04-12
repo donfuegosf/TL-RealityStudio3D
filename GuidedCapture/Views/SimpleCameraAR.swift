@@ -40,7 +40,7 @@ struct ARCubeView: UIViewRepresentable {
             planeNode.eulerAngles.x = -.pi / 2
             
             let material = SCNMaterial()
-            material.diffuse.contents = UIColor.gray // Example color
+            material.diffuse.contents = UIImage(named: "art.scnassets/grid.png")
             plane.materials = [material]
             
             return planeNode

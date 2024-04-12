@@ -46,6 +46,7 @@
 		777CD2342BC7C7E500EFE91E /* FirstMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777CD2332BC7C7E500EFE91E /* FirstMenuView.swift */; };
 		777CD2382BC7DBBC00EFE91E /* DocumentsAcces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777CD2372BC7DBBC00EFE91E /* DocumentsAcces.swift */; };
 		777CD23C2BC91C9C00EFE91E /* SimpleCameraAR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777CD23B2BC91C9C00EFE91E /* SimpleCameraAR.swift */; };
+		777CD23E2BC927BF00EFE91E /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 777CD23D2BC927BF00EFE91E /* art.scnassets */; };
 		EB20D5602A40331F00992055 /* AppDataModel+Orbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB20D55F2A40331F00992055 /* AppDataModel+Orbit.swift */; };
 		EB20D5622A40341C00992055 /* AppDataModel+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB20D5612A40341C00992055 /* AppDataModel+State.swift */; };
 		EB20D5652A40363D00992055 /* CaptureOverlayView+Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB20D5642A40363D00992055 /* CaptureOverlayView+Buttons.swift */; };
@@ -95,6 +96,7 @@
 		777CD2332BC7C7E500EFE91E /* FirstMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstMenuView.swift; sourceTree = "<group>"; };
 		777CD2372BC7DBBC00EFE91E /* DocumentsAcces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsAcces.swift; sourceTree = "<group>"; };
 		777CD23B2BC91C9C00EFE91E /* SimpleCameraAR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCameraAR.swift; sourceTree = "<group>"; };
+		777CD23D2BC927BF00EFE91E /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		B63694814766022DF0079B53 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		EB20D55F2A40331F00992055 /* AppDataModel+Orbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDataModel+Orbit.swift"; sourceTree = "<group>"; };
 		EB20D5612A40341C00992055 /* AppDataModel+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDataModel+State.swift"; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				70D2F7082A339E4A00EFA0D8 /* TutorialVideoView.swift */,
 				70D2F70A2A339E4A00EFA0D8 /* UntilProcessingCompleteFilter.swift */,
 				70D2F6F42A339DD600EFA0D8 /* Preview Content */,
+				777CD23D2BC927BF00EFE91E /* art.scnassets */,
 			);
 			path = GuidedCapture;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 			files = (
 				70D2F6F62A339DD600EFA0D8 /* Preview Assets.xcassets in Resources */,
 				70D2F73F2A33A38900EFA0D8 /* ScanPasses-iPad-FixedHeight-1.mp4 in Resources */,
+				777CD23E2BC927BF00EFE91E /* art.scnassets in Resources */,
 				70D2F7362A33A38900EFA0D8 /* ScanPasses-iPhone-FixedHeight-3.mp4 in Resources */,
 				70D2F73A2A33A38900EFA0D8 /* ScanPasses-iPhone-FixedHeight-1.mp4 in Resources */,
 				7028C8452A33C1F900381BF1 /* README.md in Resources */,
