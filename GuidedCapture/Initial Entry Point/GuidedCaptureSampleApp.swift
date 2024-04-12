@@ -9,12 +9,13 @@ import SwiftUI
 
 @main
 struct GuidedCaptureSampleApp: App {
+    @StateObject var viewModel = SharedViewModel() 
     static let subsystem: String = "com.example.apple-samplecode.GuidedCapture"
     
     var body: some Scene {
         WindowGroup {
             if #available(iOS 17.0, *) {
-                FirstMenuView()
+                FirstMenuView().environmentObject(viewModel)
             }
         }
     }

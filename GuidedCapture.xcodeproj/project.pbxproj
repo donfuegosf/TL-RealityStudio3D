@@ -44,9 +44,10 @@
 		70D2F73E2A33A38900EFA0D8 /* ScanPasses-iPad-FixedHeight-unflippable-high.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 70D2F7322A33A37E00EFA0D8 /* ScanPasses-iPad-FixedHeight-unflippable-high.mp4 */; };
 		70D2F73F2A33A38900EFA0D8 /* ScanPasses-iPad-FixedHeight-1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 70D2F7342A33A37E00EFA0D8 /* ScanPasses-iPad-FixedHeight-1.mp4 */; };
 		777CD2342BC7C7E500EFE91E /* FirstMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777CD2332BC7C7E500EFE91E /* FirstMenuView.swift */; };
-		777CD2382BC7DBBC00EFE91E /* DocumentsAcces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777CD2372BC7DBBC00EFE91E /* DocumentsAcces.swift */; };
+		777CD2382BC7DBBC00EFE91E /* FilePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777CD2372BC7DBBC00EFE91E /* FilePickerView.swift */; };
 		777CD23C2BC91C9C00EFE91E /* SimpleCameraAR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777CD23B2BC91C9C00EFE91E /* SimpleCameraAR.swift */; };
 		777CD23E2BC927BF00EFE91E /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 777CD23D2BC927BF00EFE91E /* art.scnassets */; };
+		777CD2402BC92DF000EFE91E /* BranchedFilePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777CD23F2BC92DF000EFE91E /* BranchedFilePickerView.swift */; };
 		EB20D5602A40331F00992055 /* AppDataModel+Orbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB20D55F2A40331F00992055 /* AppDataModel+Orbit.swift */; };
 		EB20D5622A40341C00992055 /* AppDataModel+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB20D5612A40341C00992055 /* AppDataModel+State.swift */; };
 		EB20D5652A40363D00992055 /* CaptureOverlayView+Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB20D5642A40363D00992055 /* CaptureOverlayView+Buttons.swift */; };
@@ -94,9 +95,10 @@
 		70D2F7352A33A37E00EFA0D8 /* ScanPasses-iPhone-FixedHeight-3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ScanPasses-iPhone-FixedHeight-3.mp4"; sourceTree = "<group>"; };
 		70E33ED32ABA3F70002E9A3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		777CD2332BC7C7E500EFE91E /* FirstMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstMenuView.swift; sourceTree = "<group>"; };
-		777CD2372BC7DBBC00EFE91E /* DocumentsAcces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsAcces.swift; sourceTree = "<group>"; };
+		777CD2372BC7DBBC00EFE91E /* FilePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerView.swift; sourceTree = "<group>"; };
 		777CD23B2BC91C9C00EFE91E /* SimpleCameraAR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCameraAR.swift; sourceTree = "<group>"; };
 		777CD23D2BC927BF00EFE91E /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		777CD23F2BC92DF000EFE91E /* BranchedFilePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchedFilePickerView.swift; sourceTree = "<group>"; };
 		B63694814766022DF0079B53 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		EB20D55F2A40331F00992055 /* AppDataModel+Orbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDataModel+Orbit.swift"; sourceTree = "<group>"; };
 		EB20D5612A40341C00992055 /* AppDataModel+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDataModel+State.swift"; sourceTree = "<group>"; };
@@ -218,9 +220,10 @@
 			children = (
 				777CD2332BC7C7E500EFE91E /* FirstMenuView.swift */,
 				70D2F7062A339E4A00EFA0D8 /* ContentView.swift */,
-				777CD2372BC7DBBC00EFE91E /* DocumentsAcces.swift */,
+				777CD2372BC7DBBC00EFE91E /* FilePickerView.swift */,
 				70D2F7012A339E4A00EFA0D8 /* ModelView.swift */,
 				777CD23B2BC91C9C00EFE91E /* SimpleCameraAR.swift */,
+				777CD23F2BC92DF000EFE91E /* BranchedFilePickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				70D2F7222A339E4A00EFA0D8 /* OnboardingButtonView+LocalizedString.swift in Sources */,
 				70D2F7202A339E4A00EFA0D8 /* TimedMessageList.swift in Sources */,
 				EB20D5652A40363D00992055 /* CaptureOverlayView+Buttons.swift in Sources */,
+				777CD2402BC92DF000EFE91E /* BranchedFilePickerView.swift in Sources */,
 				70D2F7162A339E4A00EFA0D8 /* GuidedCaptureSampleApp.swift in Sources */,
 				70D2F71F2A339E4A00EFA0D8 /* TutorialVideoView.swift in Sources */,
 				70D2F7192A339E4A00EFA0D8 /* HelpPageView.swift in Sources */,
@@ -351,7 +355,7 @@
 				70D2F71E2A339E4A00EFA0D8 /* FeedbackMessages.swift in Sources */,
 				70D2F7252A339E4A00EFA0D8 /* AppDataModel.swift in Sources */,
 				70D2F71B2A339E4A00EFA0D8 /* ShotFileInfo.swift in Sources */,
-				777CD2382BC7DBBC00EFE91E /* DocumentsAcces.swift in Sources */,
+				777CD2382BC7DBBC00EFE91E /* FilePickerView.swift in Sources */,
 				777CD23C2BC91C9C00EFE91E /* SimpleCameraAR.swift in Sources */,
 				EB20D5622A40341C00992055 /* AppDataModel+State.swift in Sources */,
 				70D2F7242A339E4A00EFA0D8 /* ProgressBarView.swift in Sources */,

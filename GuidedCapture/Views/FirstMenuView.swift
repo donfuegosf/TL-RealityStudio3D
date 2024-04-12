@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct FirstMenuView: View {
+    @EnvironmentObject var viewModel: SharedViewModel
     @StateObject var appModel = AppDataModel.instance  // Assuming this is your global app model
         
     var body: some View {
@@ -38,7 +39,7 @@ struct FirstMenuView: View {
                            .cornerRadius(10)
                            .padding(.horizontal)
                    }
-                   NavigationLink(destination: SimpleCameraAr()) {
+                   NavigationLink(destination: BranchedFilePickerView().environmentObject(viewModel)) {
                        Text("Enter Simple AR mode")
                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
                            .background(Color.green)
