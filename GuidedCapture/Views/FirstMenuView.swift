@@ -13,7 +13,7 @@ struct FirstMenuView: View {
     @StateObject var appModel = AppDataModel.instance  // Assuming this is your global app model
         
     var body: some View {
-           NavigationView {
+
                VStack {
                    Spacer() // Pushes everything below to the bottom
                    Text("Welcome to Reality Studio")
@@ -49,8 +49,6 @@ struct FirstMenuView: View {
                    }
                    .padding(.bottom, 20)  // Adds bottom padding to lower button for spacing from the bottom edge
                }
-           }
-           .environmentObject(appModel)
        }
    }
 

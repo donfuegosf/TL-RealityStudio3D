@@ -14,8 +14,10 @@ struct GuidedCaptureSampleApp: App {
     
     var body: some Scene {
         WindowGroup {
-            if #available(iOS 17.0, *) {
-                FirstMenuView().environmentObject(viewModel)
+            NavigationStack {
+                if #available(iOS 17.0, *) {
+                    FirstMenuView().environmentObject(viewModel)
+                }
             }
         }
     }

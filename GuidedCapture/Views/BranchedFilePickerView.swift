@@ -12,7 +12,6 @@ struct BranchedFilePickerView: View {
     @State private var pickedDocuments: [URL] = []
 
     var body: some View {
-        NavigationStack {
             VStack {
                 Button("Pick Files") {
                     showDocumentPicker = true
@@ -36,7 +35,6 @@ struct BranchedFilePickerView: View {
                     Text("No model selected")
                 }
             }
-        }
     }
 }
 
