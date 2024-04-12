@@ -72,7 +72,7 @@ struct ARCubeView: UIViewRepresentable {
                 print("Failed to load the model from URL: \(modelURL)")
                 return
             }
-            modelNode.position = SCNVector3(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
+            modelNode.position = SCNVector3(transform.columns.3.x, transform.columns.3.y , transform.columns.3.z)
             sceneView.scene.rootNode.addChildNode(modelNode)
         }
     }

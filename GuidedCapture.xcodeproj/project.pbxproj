@@ -219,11 +219,11 @@
 			isa = PBXGroup;
 			children = (
 				777CD2332BC7C7E500EFE91E /* FirstMenuView.swift */,
-				70D2F7062A339E4A00EFA0D8 /* ContentView.swift */,
 				777CD2372BC7DBBC00EFE91E /* FilePickerView.swift */,
+				777CD23F2BC92DF000EFE91E /* BranchedFilePickerView.swift */,
 				70D2F7012A339E4A00EFA0D8 /* ModelView.swift */,
 				777CD23B2BC91C9C00EFE91E /* SimpleCameraAR.swift */,
-				777CD23F2BC92DF000EFE91E /* BranchedFilePickerView.swift */,
+				70D2F7062A339E4A00EFA0D8 /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
