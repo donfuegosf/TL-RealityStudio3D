@@ -56,10 +56,23 @@ class SharedViewModel: ObservableObject {
 
 
 
+enum ActiveAlert: Identifiable {
+    case clearConfirm, unsupportedFile
+    var id: Int {
+            switch self {
+            case .clearConfirm:
+                return 1
+            case .unsupportedFile:
+                return 2
+            }
+        }
+}
+
 struct BranchedFilePickerView: View {
     @EnvironmentObject var viewModel: SharedViewModel
     @State private var showDocumentPicker = false
-
+    @State private var activeAlert: ActiveAlert?
+    
     var body: some View {
         VStack {
             List(viewModel.pickedDocuments, id: \.self) { url in
@@ -70,67 +83,69 @@ struct BranchedFilePickerView: View {
                     } else {
                         viewModel.alertMessage = "Only .usdz files are supported."
                         viewModel.showAlert = true
+                        activeAlert = .unsupportedFile
                     }
                 }
             }
 
-            Spacer()  // Pushes everything below to the bottom of the view
+            Spacer()
 
-            // 'Pick Files' button with appropriate styling and padding
             Button("Pick Files") {
                 showDocumentPicker = true
             }
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
-            .foregroundColor(.white)
-            .background(Color.blue)
-            .cornerRadius(10)
-            .overlay(
-                Rectangle() // Overlay a transparent rectangle to catch taps
-                .foregroundColor(.clear)
-                .contentShape(Rectangle())
-                .onTapGesture {
-                    showDocumentPicker = true
-                }
-            ) // Apply content shape after background
-            .padding(.horizontal) // Padding last to ensure it does not interfere with tappable area
-            .sheet(isPresented: $showDocumentPicker) {
-                CustomDocumentPicker(pickedDocuments: $viewModel.pickedDocuments)
-            }
+            .styledAsFilePickerButton()
 
-
-            // Conditional 'Clear All' button with appropriate styling and padding
             if !viewModel.pickedDocuments.isEmpty {
                 Button("Clear All") {
-                    viewModel.pickedDocuments.removeAll()
+                    activeAlert = .clearConfirm
                 }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
-                .foregroundColor(.white)
-                .background(Color.red)
-                
-                .cornerRadius(10)
-                .overlay(
-                    Rectangle() // Overlay a transparent rectangle to catch taps
-                    .foregroundColor(.clear)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        viewModel.pickedDocuments.removeAll()
-                    }
-                )
-                .padding(.horizontal)
-                
+                .styledAsClearButton()
             }
         }
-        .padding(.bottom, 20)  // Adds bottom padding to the entire VStack for spacing from the bottom edge
-        .alert(isPresented: $viewModel.showAlert) {
-            Alert(title: Text("Unsupported File Type"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+        .padding(.bottom, 20)
+        .alert(item: $activeAlert) { alertType in
+            switch alertType {
+            case .clearConfirm:
+                return Alert(
+                    title: Text("Confirm Deletion"),
+                    message: Text("Are you sure you want to clear all documents?"),
+                    primaryButton: .destructive(Text("Delete")) {
+                        viewModel.pickedDocuments.removeAll()
+                    },
+                    secondaryButton: .cancel()
+                )
+            case .unsupportedFile:
+                return Alert(title: Text("Unsupported File Type"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+            }
+        }
+        .sheet(isPresented: $showDocumentPicker) {
+            CustomDocumentPicker(pickedDocuments: $viewModel.pickedDocuments)
         }
         .navigationDestination(isPresented: $viewModel.isARViewActive) {
             if let url = viewModel.selectedModelURL {
-                SimpleCameraAr(modelURL: url)  // Ensure this view is correctly implemented to handle the AR display
+                SimpleCameraAr(modelURL: url)
             } else {
                 Text("No model selected")
             }
         }
+    }
+}
+
+extension View {
+    func styledAsFilePickerButton() -> some View {
+        self.frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
+        .background(Color.blue)
+        .foregroundColor(.white)
+        .cornerRadius(10)
+        .padding(.horizontal)
+    }
+
+    func styledAsClearButton() -> some View {
+        self.frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
+        .background(Color.red)
+        .foregroundColor(.white)
+        .cornerRadius(10)
+        .padding(.horizontal)
     }
 }
 
