@@ -4,18 +4,13 @@ import ARKit
 
 struct ARCubeView: UIViewRepresentable {
     var modelURL: URL
-    
+    @Binding var clearScene: Bool
     func makeUIView(context: Context) -> ARSCNView {
         let sceneView = ARSCNView(frame: .zero)
         sceneView.delegate = context.coordinator
-        
+        initializeARSession(sceneView: sceneView)
         // Configure the AR session with world tracking and plane detection
-        let configuration = ARWorldTrackingConfiguration()
-        configuration.planeDetection = .horizontal
-        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
-        
-        sceneView.autoenablesDefaultLighting = true
-        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
+
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleTap(_:)))
         sceneView.addGestureRecognizer(tapGestureRecognizer)
@@ -24,10 +19,32 @@ struct ARCubeView: UIViewRepresentable {
         
         return sceneView
     }
+    private func initializeARSession(sceneView: ARSCNView) {
+        // Configure the AR session with world tracking and plane detection
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = .horizontal
+        sceneView.autoenablesDefaultLighting = true
+        sceneView.automaticallyUpdatesLighting = true
+        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+        
+        // Add a slight delay and reset the session to force reinitialization
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+        }
+    }
+    
+    
+    
     
     func updateUIView(_ uiView: ARSCNView, context: Context) {
-        // Update the AR scene view during SwiftUI state updates
-    }
+            if clearScene {
+                uiView.scene.rootNode.childNodes.forEach { $0.removeFromParentNode() }
+                DispatchQueue.main.async {
+                                // Reset the state to false to allow for re-triggering
+                                self.clearScene = false
+                            }  // Reset the flag after clearing
+            }
+        }
     
     func makeCoordinator() -> Coordinator {
         Coordinator(modelURL: modelURL)
@@ -80,8 +97,20 @@ struct ARCubeView: UIViewRepresentable {
 
 struct SimpleCameraAr: View {
     var modelURL: URL
+    @State private var clearScene = false  // State to control scene clearing
+
     var body: some View {
-        ARCubeView(modelURL: modelURL)
-            .edgesIgnoringSafeArea(.all)
+        VStack {
+            ARCubeView(modelURL: modelURL, clearScene: $clearScene)
+                .edgesIgnoringSafeArea(.all)
+            
+            Button("Clear Scene") {
+                clearScene = true  // Set the state to true when the button is tapped
+            }
+            .padding()
+            .background(Color.red)
+            .foregroundColor(.white)
+            .cornerRadius(10)
+        }
     }
 }
