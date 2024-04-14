@@ -2,28 +2,67 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 class SharedViewModel: ObservableObject {
-    @Published var selectedModelURL: URL?
+    @Published var selectedModelURL: URL? {
+        didSet {
+            saveSelectedModelURL()
+        }
+    }
     @Published var isARViewActive: Bool = false
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
+    @Published var pickedDocuments: [URL] = []
+
+    init() {
+        loadInitialData()
+        setupObservers()
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    private func setupObservers() {
+        NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: nil) { [weak self] _ in
+            self?.saveSelectedModelURL()
+            self?.savePickedDocuments()
+        }
+    }
+
+    private func saveSelectedModelURL() {
+        guard let url = selectedModelURL else {
+            UserDefaults.standard.removeObject(forKey: "selectedModelURL")
+            return
+        }
+        UserDefaults.standard.set(url, forKey: "selectedModelURL")
+    }
+
+    func savePickedDocuments() {
+        let urlsData = pickedDocuments.compactMap { url in
+            try? NSKeyedArchiver.archivedData(withRootObject: url, requiringSecureCoding: false)
+        }
+        UserDefaults.standard.set(urlsData, forKey: "pickedDocuments")
+    }
+
+    private func loadInitialData() {
+        if let encodedData = UserDefaults.standard.array(forKey: "pickedDocuments") as? [Data] {
+            let urls = encodedData.compactMap { data in
+                try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSURL.self, from: data) as? URL
+            }
+            self.pickedDocuments = urls
+        }
+        self.selectedModelURL = UserDefaults.standard.url(forKey: "selectedModelURL")
+    }
 }
+
+
 
 struct BranchedFilePickerView: View {
     @EnvironmentObject var viewModel: SharedViewModel
     @State private var showDocumentPicker = false
-    @State private var pickedDocuments: [URL] = []
 
     var body: some View {
         VStack {
-            Button("Pick Files") {
-                showDocumentPicker = true
-            }
-            .padding()
-            .sheet(isPresented: $showDocumentPicker) {
-                CustomDocumentPicker(pickedDocuments: $pickedDocuments, viewModel: viewModel)
-            }
-
-            List(pickedDocuments, id: \.self) { url in
+            List(viewModel.pickedDocuments, id: \.self) { url in
                 Button(url.lastPathComponent) {
                     if url.pathExtension.lowercased() == "usdz" {
                         viewModel.selectedModelURL = url
@@ -34,13 +73,60 @@ struct BranchedFilePickerView: View {
                     }
                 }
             }
+
+            Spacer()  // Pushes everything below to the bottom of the view
+
+            // 'Pick Files' button with appropriate styling and padding
+            Button("Pick Files") {
+                showDocumentPicker = true
+            }
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
+            .foregroundColor(.white)
+            .background(Color.blue)
+            .cornerRadius(10)
+            .overlay(
+                Rectangle() // Overlay a transparent rectangle to catch taps
+                .foregroundColor(.clear)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    showDocumentPicker = true
+                }
+            ) // Apply content shape after background
+            .padding(.horizontal) // Padding last to ensure it does not interfere with tappable area
+            .sheet(isPresented: $showDocumentPicker) {
+                CustomDocumentPicker(pickedDocuments: $viewModel.pickedDocuments)
+            }
+
+
+            // Conditional 'Clear All' button with appropriate styling and padding
+            if !viewModel.pickedDocuments.isEmpty {
+                Button("Clear All") {
+                    viewModel.pickedDocuments.removeAll()
+                }
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
+                .foregroundColor(.white)
+                .background(Color.red)
+                
+                .cornerRadius(10)
+                .overlay(
+                    Rectangle() // Overlay a transparent rectangle to catch taps
+                    .foregroundColor(.clear)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        viewModel.pickedDocuments.removeAll()
+                    }
+                )
+                .padding(.horizontal)
+                
+            }
         }
+        .padding(.bottom, 20)  // Adds bottom padding to the entire VStack for spacing from the bottom edge
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text("Unsupported File Type"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
         }
         .navigationDestination(isPresented: $viewModel.isARViewActive) {
             if let url = viewModel.selectedModelURL {
-                SimpleCameraAr(modelURL: url)
+                SimpleCameraAr(modelURL: url)  // Ensure this view is correctly implemented to handle the AR display
             } else {
                 Text("No model selected")
             }
@@ -50,38 +136,37 @@ struct BranchedFilePickerView: View {
 
 struct CustomDocumentPicker: UIViewControllerRepresentable {
     @Binding var pickedDocuments: [URL]
-    var viewModel: SharedViewModel  // Passing the ViewModel to the DocumentPicker
-
+    
     func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
         let picker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.usdz], asCopy: true)
         picker.delegate = context.coordinator
         return picker
     }
-
+    
     func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {}
-
+    
     func makeCoordinator() -> Coordinator {
-        Coordinator(self, viewModel: viewModel)  // Pass the ViewModel to the Coordinator
+        Coordinator(self)
     }
-
+    
     class Coordinator: NSObject, UIDocumentPickerDelegate {
         var parent: CustomDocumentPicker
-        var viewModel: SharedViewModel  // Store ViewModel in the Coordinator
-
-        init(_ documentPicker: CustomDocumentPicker, viewModel: SharedViewModel) {
+        
+        init(_ documentPicker: CustomDocumentPicker) {
             self.parent = documentPicker
-            self.viewModel = viewModel
         }
-
+        
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
             DispatchQueue.main.async {
-                // Directly add only usdz files or show alert if non-usdz files somehow get selected
-                let filteredUrls = urls.filter { $0.pathExtension.lowercased() == "usdz" }
-                if filteredUrls.isEmpty || urls.count != filteredUrls.count {
-                    self.viewModel.alertMessage = "Only .usdz files are supported."
-                    self.viewModel.showAlert = true
-                } else {
-                    self.parent.pickedDocuments = filteredUrls
+                let newUrls = urls.filter { $0.pathExtension.lowercased() == "usdz" } // Only allow 'usdz' files
+                for newUrl in newUrls {
+                    if let index = self.parent.pickedDocuments.firstIndex(where: { $0.lastPathComponent == newUrl.lastPathComponent }) {
+                        // If a document with the same name exists, replace it
+                        self.parent.pickedDocuments[index] = newUrl
+                    } else {
+                        // If no document with the same name exists, add the new document
+                        self.parent.pickedDocuments.append(newUrl)
+                    }
                 }
             }
         }
