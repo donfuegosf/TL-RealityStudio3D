@@ -14,7 +14,7 @@ struct ARCubeView: UIViewRepresentable {
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleTap(_:)))
         sceneView.addGestureRecognizer(tapGestureRecognizer)
-        
+         
         context.coordinator.sceneView = sceneView // Set the sceneView in the coordinator
         
         return sceneView

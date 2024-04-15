@@ -33,28 +33,40 @@ class SharedViewModel: ObservableObject {
             UserDefaults.standard.removeObject(forKey: "selectedModelURL")
             return
         }
-        UserDefaults.standard.set(url, forKey: "selectedModelURL")
+        do {
+            let bookmark = try url.bookmarkData()
+            UserDefaults.standard.set(bookmark, forKey: "selectedModelURL")
+        } catch {
+            print("Bookmarking failed: \(error)")
+        }
     }
 
     func savePickedDocuments() {
-        let urlsData = pickedDocuments.compactMap { url in
-            try? NSKeyedArchiver.archivedData(withRootObject: url, requiringSecureCoding: false)
+        let bookmarks = pickedDocuments.compactMap { url in
+            try? url.bookmarkData()
         }
-        UserDefaults.standard.set(urlsData, forKey: "pickedDocuments")
+        UserDefaults.standard.set(bookmarks, forKey: "pickedDocuments")
     }
 
     private func loadInitialData() {
-        if let encodedData = UserDefaults.standard.array(forKey: "pickedDocuments") as? [Data] {
-            let urls = encodedData.compactMap { data in
-                try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSURL.self, from: data) as? URL
+        if let bookmarks = UserDefaults.standard.array(forKey: "pickedDocuments") as? [Data] {
+            let urls = bookmarks.compactMap { data -> URL? in
+                var isStale = false
+                // Attempt to resolve bookmark data to a URL, handling the possibility it may be stale
+                return try? URL(resolvingBookmarkData: data, bookmarkDataIsStale: &isStale)
             }
             self.pickedDocuments = urls
         }
-        self.selectedModelURL = UserDefaults.standard.url(forKey: "selectedModelURL")
+
+        if let bookmarkData = UserDefaults.standard.data(forKey: "selectedModelURL") {
+            var isStale = false
+            // Restore the URL from bookmark data
+            self.selectedModelURL = try? URL(resolvingBookmarkData: bookmarkData, bookmarkDataIsStale: &isStale)
+        }
     }
+
+
 }
-
-
 
 enum ActiveAlert: Identifiable {
     case clearConfirm, unsupportedFile
