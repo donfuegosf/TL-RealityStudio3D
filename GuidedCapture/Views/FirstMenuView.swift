@@ -47,6 +47,14 @@ struct FirstMenuView: View {
                            .cornerRadius(10)
                            .padding(.horizontal)
                    }
+                   NavigationLink(destination: ScansFolderView()) {
+                       Text("View to delete Folders")
+                           .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
+                           .background(Color.green)
+                           .foregroundColor(.white)
+                           .cornerRadius(10)
+                           .padding(.horizontal)
+                   }
                    .padding(.bottom, 20)  // Adds bottom padding to lower button for spacing from the bottom edge
                }
        }

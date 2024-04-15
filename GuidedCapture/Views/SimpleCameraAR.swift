@@ -5,7 +5,7 @@ import ARKit
 struct ARCubeView: UIViewRepresentable {
     var modelURL: URL
     @Binding var clearScene: Bool
-
+    
     func makeUIView(context: Context) -> ARSCNView {
         let sceneView = ARSCNView(frame: .zero)
         sceneView.delegate = context.coordinator
@@ -13,11 +13,18 @@ struct ARCubeView: UIViewRepresentable {
         let tapGestureRecognizer = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleTap(_:)))
         sceneView.addGestureRecognizer(tapGestureRecognizer)
         NotificationCenter.default.addObserver(context.coordinator, selector: #selector(Coordinator.pauseSession), name: UIScene.didEnterBackgroundNotification, object: nil)
-                NotificationCenter.default.addObserver(context.coordinator, selector: #selector(Coordinator.resumeSession), name: UIScene.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(context.coordinator, selector: #selector(Coordinator.resumeSession), name: UIScene.willEnterForegroundNotification, object: nil)
         context.coordinator.sceneView = sceneView
         return sceneView
     }
-
+    private func setupARSession(for sceneView: ARSCNView) {
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = .horizontal
+        sceneView.autoenablesDefaultLighting = true
+        sceneView.automaticallyUpdatesLighting = true
+        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+    }
+    
     private func initializeARSession(sceneView: ARSCNView) {
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = .horizontal
@@ -25,7 +32,7 @@ struct ARCubeView: UIViewRepresentable {
         sceneView.automaticallyUpdatesLighting = true
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
-
+    
     func updateUIView(_ uiView: ARSCNView, context: Context) {
         if clearScene {
             uiView.scene.rootNode.childNodes.forEach { $0.removeFromParentNode() }
@@ -34,25 +41,25 @@ struct ARCubeView: UIViewRepresentable {
             }
         }
     }
-
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(modelURL: modelURL)
     }
-
+    
     class Coordinator: NSObject, ARSCNViewDelegate {
         var sceneView: ARSCNView?
         var modelURL: URL
-
+        
         init(modelURL: URL) {
             self.modelURL = modelURL
         }
-
+        
         func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
             guard let planeAnchor = anchor as? ARPlaneAnchor, let sceneView = sceneView else { return }
             let planeNode = createPlaneNode(planeAnchor: planeAnchor)
             node.addChildNode(planeNode)
         }
-
+        
         private func createPlaneNode(planeAnchor: ARPlaneAnchor) -> SCNNode {
             let plane = SCNPlane(width: CGFloat(planeAnchor.planeExtent.width), height: CGFloat(planeAnchor.planeExtent.height))
             plane.firstMaterial?.diffuse.contents = UIImage(named: "art.scnassets/grid.png")
@@ -61,7 +68,7 @@ struct ARCubeView: UIViewRepresentable {
             planeNode.eulerAngles.x = -.pi / 2
             return planeNode
         }
-
+        
         @objc func handleTap(_ gestureRecognizer: UITapGestureRecognizer) {
             guard let sceneView = self.sceneView,
                   let location = gestureRecognizer.view as? ARSCNView,
@@ -71,7 +78,7 @@ struct ARCubeView: UIViewRepresentable {
             }
             loadModel(at: result.worldTransform, in: location)
         }
-
+        
         private func loadModel(at transform: simd_float4x4, in sceneView: ARSCNView) {
             guard let scene = try? SCNScene(url: modelURL, options: nil),
                   let modelNode = scene.rootNode.childNodes.first else {
@@ -83,24 +90,24 @@ struct ARCubeView: UIViewRepresentable {
         }
         
         @objc func pauseSession() {
-                    sceneView?.session.pause()
-                    print("AR Session has been paused due to app backgrounding.")
-                }
-
-                @objc func resumeSession() {
-                    guard let sceneView = sceneView else { return }
-                    let configuration = ARWorldTrackingConfiguration()
-                    configuration.planeDetection = .horizontal
-                    sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
-                    print("AR Session has resumed after returning to foreground.")
-                }
-            }
+            sceneView?.session.pause()
+            print("AR Session has been paused due to app backgrounding.")
         }
+        
+        @objc func resumeSession() {
+            guard let sceneView = sceneView else { return }
+            let configuration = ARWorldTrackingConfiguration()
+            configuration.planeDetection = .horizontal
+            sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+            print("AR Session has resumed after returning to foreground.")
+        }
+    }
+}
 
 struct SimpleCameraAr: View {
     var modelURL: URL
     @State private var clearScene = false
-
+    
     var body: some View {
         VStack {
             ARCubeView(modelURL: modelURL, clearScene: $clearScene)

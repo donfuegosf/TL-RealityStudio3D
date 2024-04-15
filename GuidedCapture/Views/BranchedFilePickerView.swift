@@ -68,17 +68,6 @@ class SharedViewModel: ObservableObject {
 
 }
 
-enum ActiveAlert: Identifiable {
-    case clearConfirm, unsupportedFile
-    var id: Int {
-            switch self {
-            case .clearConfirm:
-                return 1
-            case .unsupportedFile:
-                return 2
-            }
-        }
-}
 
 struct BranchedFilePickerView: View {
     @EnvironmentObject var viewModel: SharedViewModel
@@ -127,7 +116,14 @@ struct BranchedFilePickerView: View {
                     secondaryButton: .cancel()
                 )
             case .unsupportedFile:
-                return Alert(title: Text("Unsupported File Type"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+                return Alert(title: Text("Unsupported File Type"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK"))
+                )
+            default:
+                    return Alert(
+                        title: Text("Error"),
+                        message: Text("An unexpected situation occurred."),
+                        dismissButton: .default(Text("OK"))
+                    )
             }
         }
         .sheet(isPresented: $showDocumentPicker) {

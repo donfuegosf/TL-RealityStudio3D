@@ -43,6 +43,9 @@
 		70D2F73D2A33A38900EFA0D8 /* ScanPasses-iPhone-FixedHeight-unflippable-low.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 70D2F72D2A33A37E00EFA0D8 /* ScanPasses-iPhone-FixedHeight-unflippable-low.mp4 */; };
 		70D2F73E2A33A38900EFA0D8 /* ScanPasses-iPad-FixedHeight-unflippable-high.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 70D2F7322A33A37E00EFA0D8 /* ScanPasses-iPad-FixedHeight-unflippable-high.mp4 */; };
 		70D2F73F2A33A38900EFA0D8 /* ScanPasses-iPad-FixedHeight-1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 70D2F7342A33A37E00EFA0D8 /* ScanPasses-iPad-FixedHeight-1.mp4 */; };
+		772F06042BCD1AFB0065E99A /* FoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772F06032BCD1AFB0065E99A /* FoldersView.swift */; };
+		772F06062BCD1ED60065E99A /* AlertEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772F06052BCD1ED60065E99A /* AlertEnum.swift */; };
+		772F06092BCD26850065E99A /* ScansFolderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772F06082BCD26850065E99A /* ScansFolderManager.swift */; };
 		777CD2342BC7C7E500EFE91E /* FirstMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777CD2332BC7C7E500EFE91E /* FirstMenuView.swift */; };
 		777CD2382BC7DBBC00EFE91E /* FilePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777CD2372BC7DBBC00EFE91E /* FilePickerView.swift */; };
 		777CD23C2BC91C9C00EFE91E /* SimpleCameraAR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777CD23B2BC91C9C00EFE91E /* SimpleCameraAR.swift */; };
@@ -94,6 +97,9 @@
 		70D2F7342A33A37E00EFA0D8 /* ScanPasses-iPad-FixedHeight-1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ScanPasses-iPad-FixedHeight-1.mp4"; sourceTree = "<group>"; };
 		70D2F7352A33A37E00EFA0D8 /* ScanPasses-iPhone-FixedHeight-3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ScanPasses-iPhone-FixedHeight-3.mp4"; sourceTree = "<group>"; };
 		70E33ED32ABA3F70002E9A3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		772F06032BCD1AFB0065E99A /* FoldersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersView.swift; sourceTree = "<group>"; };
+		772F06052BCD1ED60065E99A /* AlertEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertEnum.swift; sourceTree = "<group>"; };
+		772F06082BCD26850065E99A /* ScansFolderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScansFolderManager.swift; sourceTree = "<group>"; };
 		777CD2332BC7C7E500EFE91E /* FirstMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstMenuView.swift; sourceTree = "<group>"; };
 		777CD2372BC7DBBC00EFE91E /* FilePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerView.swift; sourceTree = "<group>"; };
 		777CD23B2BC91C9C00EFE91E /* SimpleCameraAR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCameraAR.swift; sourceTree = "<group>"; };
@@ -147,6 +153,7 @@
 		70D2F6ED2A339DD500EFA0D8 /* GuidedCapture */ = {
 			isa = PBXGroup;
 			children = (
+				772F06072BCD26710065E99A /* Managers */,
 				777CD2362BC7D8DE00EFE91E /* Folder Management  */,
 				777CD2352BC7C7EE00EFE91E /* Views */,
 				777CD2322BC7C7A000EFE91E /* Initial Entry Point */,
@@ -207,10 +214,19 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		772F06072BCD26710065E99A /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				772F06082BCD26850065E99A /* ScansFolderManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		777CD2322BC7C7A000EFE91E /* Initial Entry Point */ = {
 			isa = PBXGroup;
 			children = (
 				70D2F6FF2A339E4A00EFA0D8 /* GuidedCaptureSampleApp.swift */,
+				772F06052BCD1ED60065E99A /* AlertEnum.swift */,
 			);
 			path = "Initial Entry Point";
 			sourceTree = "<group>";
@@ -222,8 +238,9 @@
 				777CD2372BC7DBBC00EFE91E /* FilePickerView.swift */,
 				777CD23F2BC92DF000EFE91E /* BranchedFilePickerView.swift */,
 				70D2F7012A339E4A00EFA0D8 /* ModelView.swift */,
-				777CD23B2BC91C9C00EFE91E /* SimpleCameraAR.swift */,
 				70D2F7062A339E4A00EFA0D8 /* ContentView.swift */,
+				777CD23B2BC91C9C00EFE91E /* SimpleCameraAR.swift */,
+				772F06032BCD1AFB0065E99A /* FoldersView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -333,6 +350,7 @@
 				70D2F71C2A339E4A00EFA0D8 /* CaptureFolderManager.swift in Sources */,
 				70D2F7292A339E4A00EFA0D8 /* PlayerView.swift in Sources */,
 				70D2F7222A339E4A00EFA0D8 /* OnboardingButtonView+LocalizedString.swift in Sources */,
+				772F06062BCD1ED60065E99A /* AlertEnum.swift in Sources */,
 				70D2F7202A339E4A00EFA0D8 /* TimedMessageList.swift in Sources */,
 				EB20D5652A40363D00992055 /* CaptureOverlayView+Buttons.swift in Sources */,
 				777CD2402BC92DF000EFE91E /* BranchedFilePickerView.swift in Sources */,
@@ -347,9 +365,11 @@
 				70D2F71D2A339E4A00EFA0D8 /* ContentView.swift in Sources */,
 				70D2F7142A339E4A00EFA0D8 /* CaptureOverlayView.swift in Sources */,
 				70D2F7272A339E4A00EFA0D8 /* OnboardingButtonView.swift in Sources */,
+				772F06092BCD26850065E99A /* ScansFolderManager.swift in Sources */,
 				70D2F7212A339E4A00EFA0D8 /* UntilProcessingCompleteFilter.swift in Sources */,
 				70D2F72A2A339E4A00EFA0D8 /* CapturePrimaryView.swift in Sources */,
 				70D2F7182A339E4A00EFA0D8 /* ModelView.swift in Sources */,
+				772F06042BCD1AFB0065E99A /* FoldersView.swift in Sources */,
 				70D2F7232A339E4A00EFA0D8 /* OnboardingView.swift in Sources */,
 				70D2F7262A339E4A00EFA0D8 /* FeedbackView.swift in Sources */,
 				70D2F71E2A339E4A00EFA0D8 /* FeedbackMessages.swift in Sources */,
