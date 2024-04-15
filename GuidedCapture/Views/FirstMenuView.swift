@@ -8,6 +8,26 @@
 
 import SwiftUI
 
+struct ButtonStyleModifier: ViewModifier {
+    var backgroundColor: Color = .blue
+    
+    func body(content: Content) -> some View {
+        content
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
+            .background(backgroundColor)
+            .foregroundColor(.white)
+            .cornerRadius(10)
+            .padding(.horizontal)
+    }
+}
+
+extension View {
+    func buttonModifier() -> some View {
+        self.modifier(ButtonStyleModifier())
+    }
+}
+
+
 struct FirstMenuView: View {
     @EnvironmentObject var viewModel: SharedViewModel
     @StateObject var appModel = AppDataModel.instance  // Assuming this is your global app model
@@ -24,36 +44,21 @@ struct FirstMenuView: View {
 
                    NavigationLink(destination: ContentView()) {
                        Text("Enter Scan Mode")
-                           .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
-                           .background(Color.blue)
-                           .foregroundColor(.white)
-                           .cornerRadius(10)
-                           .padding(.horizontal)
+                           .buttonModifier()
                    }
 
                    NavigationLink(destination: FilePickerView()) {
                        Text("Enter Documents Folder")
-                           .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
-                           .background(Color.green)
-                           .foregroundColor(.white)
-                           .cornerRadius(10)
-                           .padding(.horizontal)
+                           .buttonModifier()
+
                    }
                    NavigationLink(destination: BranchedFilePickerView().environmentObject(viewModel)) {
                        Text("Enter Simple AR mode")
-                           .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
-                           .background(Color.green)
-                           .foregroundColor(.white)
-                           .cornerRadius(10)
-                           .padding(.horizontal)
+                           .buttonModifier()
                    }
                    NavigationLink(destination: ScansFolderView()) {
                        Text("View to delete Folders")
-                           .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
-                           .background(Color.green)
-                           .foregroundColor(.white)
-                           .cornerRadius(10)
-                           .padding(.horizontal)
+                           .buttonModifier()
                    }
                    .padding(.bottom, 20)  // Adds bottom padding to lower button for spacing from the bottom edge
                }
