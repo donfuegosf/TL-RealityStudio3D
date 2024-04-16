@@ -1,3 +1,71 @@
+# Reality Studio 3D
+
+Welcome to the **Reality Studio 3D** app, a powerful tool developed using Swift and SwiftUI, designed to enhance your experience with 3D objects through advanced features and intuitive interactions.
+
+## Open Source Release
+
+The initial version (V0) of the app will be available as open source starting **April 16, 2024**.
+**Post-April 2024**, the project will transition to a **closed source model to further its development**.
+You can preview it here: [Closed Source Reality Studio 3D on GitHub](https://github.com/AntoneseiCristian/Reality-Studio-3D-Preview-App).
+
+## Features
+
+**Reality Studio 3D** offers a suite of tools to manage, view, and interact with 3D models:
+
+- **3D Object Scanning**: Capture real-world objects as 3D models using the device's camera.
+<p align="center">
+  <img src="https://github.com/AntoneseiCristian/Reality-Studio-3D-Preview-App/blob/main/3D%20Capture%20Example/IMG_0315.PNG" style="width: 25%;" alt="Example Image">
+  <img src="https://github.com/AntoneseiCristian/Reality-Studio-3D-Preview-App/blob/main/3D%20Capture%20Example/IMG_0317.PNG" style="width: 25%;" alt="Example Image">
+  <img src="https://github.com/AntoneseiCristian/Reality-Studio-3D-Preview-App/blob/main/Processed%203D%20Model/IMG_0318.PNG" style="width: 25%;" alt="Example Image">
+</p>
+- **AR Quick Preview**: Leverage Apple's ARKit for immediate augmented reality previews of your 3D models.
+<p align="center">
+  <img src="https://github.com/AntoneseiCristian/Reality-Studio-3D-Preview-App/blob/main/Processed%203D%20Model/IMG_0322.PNG" style="width: 25%;" alt="Example Image">
+  <img src="https://github.com/AntoneseiCristian/Reality-Studio-3D-Preview-App/blob/main/Processed%203D%20Model/IMG_0324.PNG" style="width: 25%;" alt="Example Image">
+</p>
+<p align="center">
+  <img src="https://github.com/AntoneseiCristian/Reality-Studio-3D-Preview-App/blob/main/3D%20Model%20in%20Real%20World/IMG_0326.PNG" style="width: 25%;" alt="Example Image">
+  <img src="https://github.com/AntoneseiCristian/Reality-Studio-3D-Preview-App/blob/main/3D%20Model%20in%20Real%20World/IMG_0328.PNG" style="width: 25%;" alt="Example Image">
+  <img src="https://github.com/AntoneseiCristian/Reality-Studio-3D-Preview-App/blob/main/3D%20Model%20in%20Real%20World/IMG_0329.JPG" style="width: 25%;" alt="Example Image">
+</p>
+
+- **Tracking Body Parts**
+<p align="center">
+  <img src="https://github.com/AntoneseiCristian/Reality-Studio-3D-Preview-App/blob/main/3D%20Model%20in%20Real%20World/IMG_0330.PNG" style="width: 25%;" alt="Example Image">
+</p>
+  
+- **Custom AR Mode**: Place and view 3D models in your environment multiple times with a customizable placement on horizontal surfaces.
+<p align="center">
+  <img src="https://github.com/AntoneseiCristian/Reality-Studio-3D-Preview-App/blob/main/Simple%20VR/IMG_0332.PNG" style="width: 25%;" alt="Example Image">
+</p>
+
+
+- **Pick View and display in Simple AR**:
+***Objects are filtred***
+<p align="center">
+  <img src="https://github.com/AntoneseiCristian/Reality-Studio-3D-Preview-App/blob/main/Pick%20Files%20From%20Folder/IMG_0334.PNG" style="width: 25%;" alt="Example Image">
+</p>
+
+***Added and saved in a list using UserDefaults***
+<p align="center">
+  <img src="https://github.com/AntoneseiCristian/Reality-Studio-3D-Preview-App/blob/main/Pick%20Files%20From%20Folder/IMG_0333.PNG" style="width: 25%;" alt="Example Image">
+</p>
+
+- **Folder Management**: Easily organize your 3D projects with capabilities to create, view, and delete folders within the app.
+<p align="center">
+<img src="https://github.com/AntoneseiCristian/Reality-Studio-3D/blob/main/Folder%20Management/Entry%20Point.PNG" style="width: 25%;" alt="Example Image">
+<img src="https://github.com/AntoneseiCristian/Reality-Studio-3D/blob/main/Folder%20Management/Inside%20Folder.PNG" style="width: 25%;" alt="Example Image">
+<img src="https://github.com/AntoneseiCristian/Reality-Studio-3D/blob/main/Folder%20Management/Delete%20File.PNG" style="width: 25%;" alt="Example Image">
+</p>
+
+
+## Current Status
+
+The app is in active development, featuring various views that cater to the functionalities listed. Stay tuned for updates as we continue to expand the capabilities of **Reality Studio 3D**.
+
+## About This README
+
+This document provides the latest updates and the current status of the **Reality Studio 3D** app. Keep this page bookmarked for future updates and changes.
 AR Object Viewer & Scanner
 
 Overview
