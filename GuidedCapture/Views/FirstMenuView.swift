@@ -47,11 +47,6 @@ struct FirstMenuView: View {
                            .buttonModifier()
                    }
 
-                   NavigationLink(destination: FilePickerView()) {
-                       Text("Enter Documents Folder")
-                           .buttonModifier()
-
-                   }
                    NavigationLink(destination: BranchedFilePickerView().environmentObject(viewModel)) {
                        Text("Enter Simple AR mode")
                            .buttonModifier()
